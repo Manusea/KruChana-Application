@@ -61,6 +61,47 @@ function ScoreSystem(eachStudent, awnser) {
   console.log(score);
 }
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+function shuffleEachChoice(array) {
+  var arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"];
+  shuffle(arrayChoiceIndex);
+
+  for (var i = 0; i < array.length; i++){
+    var temp1 = array[i][arrayChoiceIndex.pop()], temp2 = array[i][arrayChoiceIndex.pop()], temp3 = array[i][arrayChoiceIndex.pop()], temp4 = array[i][arrayChoiceIndex.pop()];
+
+    arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"]
+    shuffle(arrayChoiceIndex);
+
+    array[i][arrayChoiceIndex.pop()] = temp1;
+    array[i][arrayChoiceIndex.pop()] = temp2;
+    array[i][arrayChoiceIndex.pop()] = temp3;
+    array[i][arrayChoiceIndex.pop()] = temp4;
+
+    arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"]
+    shuffle(arrayChoiceIndex);
+  }
+  
+  return array;
+}
+
 class StudentTakeTest extends React.Component {
   static contextType = AuthContext;
 
@@ -159,7 +200,10 @@ class StudentTakeTest extends React.Component {
           question: item.question,
         });
       });
-      // console.log(arrayDictStudents);
+
+      shuffle(arrayDictStudents); // random choice
+      shuffleEachChoice(arrayDictStudents); // random each choice
+
     }
 
     return (
