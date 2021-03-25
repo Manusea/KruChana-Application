@@ -22,7 +22,7 @@ class sub extends Component {
             
             <Image source={require("../img/math.png")} 
                     style = {styles.picture}
-                    onPress={() => this.props.navigation.navigate('Name Exame')}
+                    onPress={() => this.props.navigation.navigate('subject_Math')}
             />
 
             <Image source={require("../img/eng.png")} 
