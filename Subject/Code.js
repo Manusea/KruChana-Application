@@ -8,7 +8,7 @@ import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-class addData extends Component {
+class addData extends Component { 
 
   constructor(props) {
     super(props);
