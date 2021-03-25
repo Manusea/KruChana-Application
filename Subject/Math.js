@@ -15,6 +15,7 @@ class addData extends Component {
     
     this.state = {
       text: '',
+      timer: '',
       question: "",
       choice1: "",
       choice2: "",
@@ -33,9 +34,8 @@ class addData extends Component {
     this.setState(state);
 }
 
- storeUser() {
-  
-      
+ storeUser(timers) {
+       
   this.usersCollectionRef.add({
           question: this.state.question,
           choice1: this.state.choice1,
@@ -59,12 +59,28 @@ class addData extends Component {
                 isLoading: false
             })
         })
+
+        this.usersCollectionTime.add({
+          timer: timers
+        }).then((res) => {
+            this.setState({
+                timer: timers
+            })
+        })
+        .catch((err) => {
+            console.log('Error found: ', err);
+            this.setState({
+                isLoading: false
+            })
+        })
     }
   
     render (){
-      const {text} = this.props.route.params
+      const {text,timer} = this.props.route.params
       console.log({text}.text)
+      console.log({timer}.timer)
       this.usersCollectionRef = firestore().collection('subject_Math').doc({text}.text).collection('Exam')
+      this.usersCollectionTime = firestore().collection('subject_Math').doc({text}.text).collection('Timer')
       return (
         <ScrollView>
           <View style={styles.container}>
@@ -116,7 +132,7 @@ class addData extends Component {
      onChangeText={(val) => this.inputValueUpdate(val, 'ans')}
     />
                
-            <TouchableOpacity style={styles.loginButton} onPress={() =>  this.storeUser()}>
+            <TouchableOpacity style={styles.loginButton} onPress={() =>  this.storeUser({timer}.timer)}>
               <Text style={styles.loginButtonText}>
                 ADD QUESTION
               </Text>

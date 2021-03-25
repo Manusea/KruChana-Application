@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, Component } from 'react';
+import {useContext, Component} from 'react';
 import {
   View,
   StyleSheet,
@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
-import { FilledButton } from '../components/FilledButton';
-import { AuthContext } from '../navigaiton/AuthProvider';
+import {FilledButton} from '../components/FilledButton';
+import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import { Input, ListItem } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
+import {Input, ListItem} from 'react-native-elements';
+import {ScrollView} from 'react-native-gesture-handler';
 import CountDown from 'react-native-countdown-component';
 
-import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
 
 let arrayDictStudents = [];
 let score = [];
@@ -62,11 +62,12 @@ function ScoreSystem(eachStudent, awnser) {
 }
 
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -81,13 +82,16 @@ function shuffle(array) {
 }
 
 function shuffleEachChoice(array) {
-  var arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"];
+  var arrayChoiceIndex = ['choice1', 'choice2', 'choice3', 'choice4'];
   shuffle(arrayChoiceIndex);
 
-  for (var i = 0; i < array.length; i++){
-    var temp1 = array[i][arrayChoiceIndex.pop()], temp2 = array[i][arrayChoiceIndex.pop()], temp3 = array[i][arrayChoiceIndex.pop()], temp4 = array[i][arrayChoiceIndex.pop()];
+  for (var i = 0; i < array.length; i++) {
+    var temp1 = array[i][arrayChoiceIndex.pop()],
+      temp2 = array[i][arrayChoiceIndex.pop()],
+      temp3 = array[i][arrayChoiceIndex.pop()],
+      temp4 = array[i][arrayChoiceIndex.pop()];
 
-    arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"]
+    arrayChoiceIndex = ['choice1', 'choice2', 'choice3', 'choice4'];
     shuffle(arrayChoiceIndex);
 
     array[i][arrayChoiceIndex.pop()] = temp1;
@@ -95,10 +99,10 @@ function shuffleEachChoice(array) {
     array[i][arrayChoiceIndex.pop()] = temp3;
     array[i][arrayChoiceIndex.pop()] = temp4;
 
-    arrayChoiceIndex = ["choice1", "choice2", "choice3", "choice4"]
+    arrayChoiceIndex = ['choice1', 'choice2', 'choice3', 'choice4'];
     shuffle(arrayChoiceIndex);
   }
-  
+
   return array;
 }
 
@@ -132,8 +136,8 @@ class StudentTakeTest extends React.Component {
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
-      const { ans, choice1, choice2, choice3, choice4, question } = res.data();
-      const { chat, name } = res.data();
+      const {ans, choice1, choice2, choice3, choice4, question} = res.data();
+      const {chat, name} = res.data();
       userArr.push({
         key: res.id,
         res,
@@ -178,15 +182,15 @@ class StudentTakeTest extends React.Component {
     if (arrayDictStudents.length != 0) {
       arrayDictStudents = [];
     }
-    const { text } = this.props.route.params;
-    console.log({ text }.text);
+    const {text} = this.props.route.params;
+    console.log({text}.text);
     this.fireStoreData = firestore()
       .collection('subject_Code')
-      .doc({ text }.text)
+      .doc({text}.text)
       .collection('Exam');
     this.usersCollectionRef = firestore()
       .collection('subject_Code')
-      .doc({ text }.text)
+      .doc({text}.text)
       .collection('score');
 
     {
@@ -203,7 +207,6 @@ class StudentTakeTest extends React.Component {
 
       shuffle(arrayDictStudents); // random choice
       shuffleEachChoice(arrayDictStudents); // random each choice
-
     }
 
     return (
@@ -218,11 +221,11 @@ class StudentTakeTest extends React.Component {
             borderWidth: 2,
             borderColor: '#1CC625',
           }}
-          digitTxtStyle={{ color: '#1CC625' }}
-          timeLabelStyle={{ color: 'red', fontWeight: 'bold' }}
-          separatorStyle={{ color: '#1CC625' }}
+          digitTxtStyle={{color: '#1CC625'}}
+          timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
+          separatorStyle={{color: '#1CC625'}}
           timeToShow={['H', 'M', 'S']}
-          timeLabels={{ h: "Hr", m: "Min", s: "Sec" }}
+          timeLabels={{h: 'Hr', m: 'Min', s: 'Sec'}}
           showSeparator
         />
 
@@ -236,11 +239,11 @@ class StudentTakeTest extends React.Component {
             <RadioGroup
               size={40}
               thickness={4}
-              color='#00CABA'
-              highlightColor='#97FFDA'
-              onSelect={(index, value) => this.onSelect(index, value, eachStudent)}
-            >
-
+              color="#00CABA"
+              highlightColor="#97FFDA"
+              onSelect={(index, value) =>
+                this.onSelect(index, value, eachStudent)
+              }>
               <RadioButton value={eachStudent.choice1}>
                 <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
               </RadioButton>
@@ -268,7 +271,7 @@ class StudentTakeTest extends React.Component {
     );
   }
   onPressButton() {
-    const { navigate } = this.props.navigation;
+    const {navigate} = this.props.navigation;
     FinishTest();
     this.storeUser();
     navigate('Home Student');
