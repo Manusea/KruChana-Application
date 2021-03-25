@@ -149,7 +149,7 @@ class StudentTakeTest extends React.Component {
           <Button
             title="chat"
             onPress={() => {
-              this.props.navigation.navigate('Chat Math', {text: {text}.text});
+              this.props.navigation.navigate('Chat English', {text: {text}.text});
             }}
           />
         </View>

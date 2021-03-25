@@ -7,8 +7,6 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button, Image } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const subject = 'sssss'
-
 const editSubject = () => {
     // subject = this.subject
     Alert.alert(subject)

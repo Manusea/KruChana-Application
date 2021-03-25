@@ -39,8 +39,25 @@ import Software from '../Subject/SoftwareProcess'
 
 import ChatTeacher from '../screens/chatTeacher'
 import ChatStudent from '../screens/chatStudent'
-import ChatMath from '../examChat/mathChat'
-import ChatEnglish from '../examChat/englishChat'
+
+import ChatMath from '../StudentExamChat/mathChat'
+import ChatEnglish from '../StudentExamChat/englishChat'
+import ChatScience from '../StudentExamChat/scienceChat'
+import ChatSoftware from '../StudentExamChat/softwareChat'
+import ChatCode from '../StudentExamChat/codeChat'
+
+import NameExamChat from '../TeacherExamChat/NameExamChat';
+import NameMathChat from '../TeacherExamChat/NameMathChat';
+import NameEnglishChat from '../TeacherExamChat/NameEnglishChat';
+import NameScienceChat from '../TeacherExamChat/NameScienceChat';
+import NameSoftwareChat from '../TeacherExamChat/NameSoftwareChat';
+import NameCodeChat from '../TeacherExamChat/NameCodeChat';
+
+import MathChat from '../TeacherExamChat/MathChat';
+import EnglishChat from '../TeacherExamChat/EnglishChat';
+import ScienceChat from '../TeacherExamChat/ScienceChat';
+import SoftwareChat from '../TeacherExamChat/SoftwareChat';
+import CodeChat from '../TeacherExamChat/CodeChat';
 
 import toScoreEng from '../scoreSubject/eng';
 import toScoreMath from '../scoreSubject/math';
@@ -128,6 +145,7 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Software" component={Software}/>
 
         <Stack.Screen name="Chat Teacher" component={ChatTeacher}/>
+        <Stack.Screen name="Name Exam Chat" component={NameExamChat}/>
 
         <Stack.Screen name="toScoreEng" component={toScoreEng}/>
         <Stack.Screen name="toScoreMath" component={toScoreMath}/>
@@ -142,6 +160,17 @@ export default function checkRoleScreen() {
         <Stack.Screen name="scoreScience" component={scoreScience}/>
         <Stack.Screen name="scoreSoftware" component={scoreSoftware}/>
 
+        <Stack.Screen name="Name Math Chat" component={NameMathChat}/>
+        <Stack.Screen name="Name English Chat" component={NameEnglishChat}/>
+        <Stack.Screen name="Name Science Chat" component={NameScienceChat}/>
+        <Stack.Screen name="Name Software Chat" component={NameSoftwareChat}/>
+        <Stack.Screen name="Name Code Chat" component={NameCodeChat}/>
+
+        <Stack.Screen name="Math Chat" component={MathChat}/>
+        <Stack.Screen name="English Chat" component={EnglishChat}/>
+        <Stack.Screen name="Science Chat" component={ScienceChat}/>
+        <Stack.Screen name="Software Chat" component={SoftwareChat}/>
+        <Stack.Screen name="Code Chat" component={CodeChat}/>
 
       </Stack.Navigator>
     </>
@@ -166,6 +195,9 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Chat Student" component={ChatStudent}/>
         <Stack.Screen name="Chat Math" component={ChatMath}/>
         <Stack.Screen name="Chat English" component={ChatEnglish}/>
+        <Stack.Screen name="Chat Science" component={ChatScience}/>
+        <Stack.Screen name="Chat Software" component={ChatSoftware}/>
+        <Stack.Screen name="Chat Code" component={ChatCode}/>
 
       </Stack.Navigator>
     </>

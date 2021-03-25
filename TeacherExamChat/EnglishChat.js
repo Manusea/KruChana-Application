@@ -73,8 +73,8 @@ class chat extends React.Component {
 
         const {text} = this.props.route.params
         console.log({text}.text)
-        this.fireStoreData = firestore().collection("subject_Math").doc({text}.text).collection('Chat');
-        this.usersCollectionRef = firestore().collection("subject_Math").doc({text}.text).collection('Chat');
+        this.fireStoreData = firestore().collection("subject_Eng").doc({text}.text).collection('Chat');
+        this.usersCollectionRef = firestore().collection("subject_Eng").doc({text}.text).collection('Chat');
 
       return (
         <ScrollView>
