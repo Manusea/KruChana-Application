@@ -6,6 +6,7 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import CountDown from 'react-native-countdown-component';
 
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 
@@ -145,14 +146,29 @@ class StudentTakeTest extends React.Component {
 
     return (
       <View>
-        <View>
+         {/*Timer*/}
+         <CountDown
+            size={30}
+            until={120}
+            onFinish={this.onPressButton2}
+            digitStyle={{
+              backgroundColor: '#FFF',
+              borderWidth: 2,
+              borderColor: '#1CC625',
+            }}
+            digitTxtStyle={{color: '#1CC625'}}
+            timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
+            separatorStyle={{color: '#1CC625'}}
+            timeToShow={['H', 'M', 'S']}
+            timeLabels={{h:"Hr",m: "Min", s: "Sec"}}
+            showSeparator
+          />
           <Button
             title="chat"
             onPress={() => {
               this.props.navigation.navigate('Chat Software', {text: {text}.text});
             }}
           />
-        </View>
         <ScrollView>
           <View style={styles.container}>
             {this.state.students.map(eachStudent => (
