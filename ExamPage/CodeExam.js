@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, Component} from 'react';
+import { useContext, Component } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
-import {FilledButton} from '../components/FilledButton';
-import {AuthContext} from '../navigaiton/AuthProvider';
+import { FilledButton } from '../components/FilledButton';
+import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import {Input, ListItem} from 'react-native-elements';
-import {ScrollView} from 'react-native-gesture-handler';
+import { Input, ListItem } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 import CountDown from 'react-native-countdown-component';
 
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 let arrayDictStudents = [];
 let score = [];
@@ -71,7 +71,6 @@ class StudentTakeTest extends React.Component {
       userArr: [],
     };
     this.onPressButton = this.onPressButton.bind(this);
-    this.onPressButton2 = this.onPressButton2.bind(this);
   }
 
   onSelect(index, value, eachStudent) {
@@ -92,8 +91,8 @@ class StudentTakeTest extends React.Component {
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
-      const {ans, choice1, choice2, choice3, choice4, question} = res.data();
-      const {chat, name} = res.data();
+      const { ans, choice1, choice2, choice3, choice4, question } = res.data();
+      const { chat, name } = res.data();
       userArr.push({
         key: res.id,
         res,
@@ -138,15 +137,15 @@ class StudentTakeTest extends React.Component {
     if (arrayDictStudents.length != 0) {
       arrayDictStudents = [];
     }
-    const {text} = this.props.route.params;
-    console.log({text}.text);
+    const { text } = this.props.route.params;
+    console.log({ text }.text);
     this.fireStoreData = firestore()
       .collection('subject_Code')
-      .doc({text}.text)
+      .doc({ text }.text)
       .collection('Exam');
     this.usersCollectionRef = firestore()
       .collection('subject_Code')
-      .doc({text}.text)
+      .doc({ text }.text)
       .collection('score');
 
     {
@@ -165,23 +164,23 @@ class StudentTakeTest extends React.Component {
 
     return (
       <ScrollView>
-          {/*Timer*/}
-          <CountDown
-            size={30}
-            until={120}
-            onFinish={this.onPressButton}
-            digitStyle={{
-              backgroundColor: '#FFF',
-              borderWidth: 2,
-              borderColor: '#1CC625',
-            }}
-            digitTxtStyle={{color: '#1CC625'}}
-            timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
-            separatorStyle={{color: '#1CC625'}}
-            timeToShow={['H', 'M', 'S']}
-            timeLabels={{h:"Hr",m: "Min", s: "Sec"}}
-            showSeparator
-          />
+        {/*Timer*/}
+        <CountDown
+          size={30}
+          until={120}
+          onFinish={this.onPressButton}
+          digitStyle={{
+            backgroundColor: '#FFF',
+            borderWidth: 2,
+            borderColor: '#1CC625',
+          }}
+          digitTxtStyle={{ color: '#1CC625' }}
+          timeLabelStyle={{ color: 'red', fontWeight: 'bold' }}
+          separatorStyle={{ color: '#1CC625' }}
+          timeToShow={['H', 'M', 'S']}
+          timeLabels={{ h: "Hr", m: "Min", s: "Sec" }}
+          showSeparator
+        />
 
         {this.state.students.map((eachStudent) => (
           <>
@@ -193,21 +192,21 @@ class StudentTakeTest extends React.Component {
             <RadioGroup
               size={40}
               thickness={4}
-              color="#00CABA"
-              highlightColor="#97FFDA"
-              onSelect={(index, value) =>
-                this.onSelect(index, value, eachStudent)
-              }>
-              <RadioButton value={1}>
+              color='#00CABA'
+              highlightColor='#97FFDA'
+              onSelect={(index, value) => this.onSelect(index, value, eachStudent)}
+            >
+
+              <RadioButton value={eachStudent.choice1}>
                 <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
               </RadioButton>
-              <RadioButton value={2}>
+              <RadioButton value={eachStudent.choice2}>
                 <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
               </RadioButton>
-              <RadioButton value={3}>
+              <RadioButton value={eachStudent.choice3}>
                 <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
               </RadioButton>
-              <RadioButton value={4}>
+              <RadioButton value={eachStudent.choice4}>
                 <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
               </RadioButton>
             </RadioGroup>
@@ -225,7 +224,7 @@ class StudentTakeTest extends React.Component {
     );
   }
   onPressButton() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     FinishTest();
     this.storeUser();
     navigate('Home Student');
