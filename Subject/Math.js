@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
+//Mansea
 class addData extends Component {
 
   constructor(props) {
