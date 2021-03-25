@@ -150,7 +150,7 @@ class StudentTakeTest extends React.Component {
         <CountDown
             size={30}
             until={120}
-            onFinish={this.onPressButton2}
+            onFinish={this.onPressButton}
             digitStyle={{
               backgroundColor: '#FFF',
               borderWidth: 2,

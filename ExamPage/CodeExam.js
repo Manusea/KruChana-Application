@@ -169,7 +169,7 @@ class StudentTakeTest extends React.Component {
           <CountDown
             size={30}
             until={120}
-            onFinish={this.onPressButton2}
+            onFinish={this.onPressButton}
             digitStyle={{
               backgroundColor: '#FFF',
               borderWidth: 2,
@@ -225,13 +225,6 @@ class StudentTakeTest extends React.Component {
     );
   }
   onPressButton() {
-    const {navigate} = this.props.navigation;
-    FinishTest();
-    this.storeUser();
-    navigate('Home Student');
-  }
-
-  onPressButton2() {
     const {navigate} = this.props.navigation;
     FinishTest();
     this.storeUser();
