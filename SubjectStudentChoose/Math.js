@@ -36,11 +36,12 @@ class exam extends Component {
     getCollection = (querySnapshot) => {
       const userArr = [];
       querySnapshot.forEach((res) => {
-        const {name} = res.data();
+        const {name,time} = res.data();
         userArr.push({
           key: res.id,
           res,
           name,
+          time
         });
       });
       this.setState({
@@ -59,6 +60,7 @@ class exam extends Component {
                   title={item.name}
                   onPress={() => {
                     this.props.navigation.navigate('MathExam', {text: item.name});
+                    this.props.navigation.navigate('MathExam', {timer: item.time});
                   }}
                 />
 

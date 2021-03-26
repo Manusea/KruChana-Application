@@ -13,7 +13,8 @@ class test extends React.Component {
     super(props);
     this.usersCollectionRef = firestore().collection('subject_Eng').doc('Name').collection('Name')
     this.state = {
-      name: ''
+      name: '',
+      time: 0
     };
 
 
@@ -26,10 +27,12 @@ class test extends React.Component {
 
   storeUser() { 
     this.usersCollectionRef.add({
-            name: this.state.name
+            name: this.state.name,
+            time: this.state.time
           }).then((res) => {
               this.setState({
-                  name: ''
+                  name: '',
+                  time: ''
               })
           })
           .catch((err) => {
@@ -52,9 +55,18 @@ class test extends React.Component {
                 onChangeText = {(val) => this.inputValueUpdate(val, 'name')}
                 style={styles}
             />
+
+            <Input
+                placeholder="Exam Timer (Minute)"
+                leftIcon={{ type: 'font-awesome', name: 'clock-o' }}
+                onChangeText = {(val) => this.inputValueUpdate(val, 'time')}
+                style={styles}
+            />
           
             <TouchableOpacity style={styles.loginButton} onPress={() => {
                   this.props.navigation.navigate('Eng', {text: this.state.name});
+                  this.props.navigation.navigate('Eng', {timer: this.state.time});
+                
                   this.storeUser()}
                 }>
               <Text style={styles.loginButtonText}>

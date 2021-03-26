@@ -7,7 +7,6 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
 class addData extends Component {
 
   constructor(props) {
@@ -34,8 +33,7 @@ class addData extends Component {
 }
 
  storeUser() {
-  
-      
+       
   this.usersCollectionRef.add({
           question: this.state.question,
           choice1: this.state.choice1,
@@ -59,6 +57,7 @@ class addData extends Component {
                 isLoading: false
             })
         })
+
     }
   
     render (){
@@ -115,7 +114,7 @@ class addData extends Component {
      value={this.state.ans}
      onChangeText={(val) => this.inputValueUpdate(val, 'ans')}
     />
-    
+               
             <TouchableOpacity style={styles.loginButton} onPress={() =>  this.storeUser()}>
               <Text style={styles.loginButtonText}>
                 ADD QUESTION
@@ -127,7 +126,7 @@ class addData extends Component {
                 Finish
               </Text>
             </TouchableOpacity>
-               
+
            </View>
            </ScrollView>
       )
@@ -136,8 +135,8 @@ class addData extends Component {
       const {navigate} = this.props.navigation;
       navigate('HomeTeacher');
     }
-
-  }
+  
+}
 
 
 

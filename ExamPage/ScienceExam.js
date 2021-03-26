@@ -7,12 +7,14 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import CountDown from 'react-native-countdown-component';
+
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 
 let arrayDictStudents = [];
 let score = [];
 let outPutScore = 0;
 let tempQuestion = [];
+let time;
 
 
 function FinishTest() {
@@ -45,7 +47,6 @@ function ScoreSystem(eachStudent, awnser) {
       score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Uncorrect');
     }
   }
-  console.log(score);
 }
 
 function shuffle(array) {
@@ -120,7 +121,7 @@ class StudentTakeTest extends React.Component {
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
-      const { ans, choice1, choice2, choice3, choice4, question } = res.data();
+      const { ans, choice1, choice2, choice3, choice4, question, timer } = res.data();
       const { chat, name } = res.data();
       userArr.push({
         key: res.id,
@@ -133,6 +134,7 @@ class StudentTakeTest extends React.Component {
         question,
         chat,
         name,
+        timer
       })
     })
     this.setState({
@@ -164,8 +166,9 @@ class StudentTakeTest extends React.Component {
     if (arrayDictStudents.length != 0) {
       arrayDictStudents = [];
     }
-    const { text } = this.props.route.params
+    const { text, timer } = this.props.route.params
     console.log({ text }.text)
+    time = { timer }.timer
     this.fireStoreData = firestore().collection("subject_Science").doc({ text }.text).collection('Exam');
     this.usersCollectionRef = firestore().collection("subject_Science").doc({ text }.text).collection('score');
 
@@ -177,11 +180,13 @@ class StudentTakeTest extends React.Component {
           choice2: item.choice2,
           choice3: item.choice3,
           choice4: item.choice4,
-          question: item.question
+          question: item.question,
+          timer: item.timer
         }
         )
 
       })
+
 
       shuffle(arrayDictStudents); // random choice
       shuffleEachChoice(arrayDictStudents); // random each choice
@@ -193,16 +198,16 @@ class StudentTakeTest extends React.Component {
         {/*Timer*/}
         <CountDown
           size={30}
-          until={120}
+          until={Number(time)*60}
           onFinish={this.onPressButton}
           digitStyle={{
             backgroundColor: '#FFF',
             borderWidth: 2,
-            borderColor: '#1CC625',
+            borderColor: '#0E6655',
           }}
-          digitTxtStyle={{ color: '#1CC625' }}
-          timeLabelStyle={{ color: 'red', fontWeight: 'bold' }}
-          separatorStyle={{ color: '#1CC625' }}
+          digitTxtStyle={{ color: '#0E6655' }}
+          timeLabelStyle={{ color: 'black', fontWeight: 'bold' }}
+          separatorStyle={{ color: '#0E6655' }}
           timeToShow={['H', 'M', 'S']}
           timeLabels={{ h: "Hr", m: "Min", s: "Sec" }}
           showSeparator
@@ -213,12 +218,14 @@ class StudentTakeTest extends React.Component {
             this.props.navigation.navigate('Chat Science', { text: { text }.text });
           }}
         />
+
+
         <ScrollView>
           <View style={styles.container}>
             {this.state.students.map(eachStudent => (
               <>
                 <Text style={styles.text_head}>
-                  {console.log(eachStudent)                   /*console log this*/}
+          
                   {eachStudent.question}
                 </Text>
 
@@ -257,10 +264,12 @@ class StudentTakeTest extends React.Component {
                 Summit
                 </Text>
             </TouchableOpacity>
+
           </View>
 
         </ScrollView>
       </View>
+
     );
   }
   onPressButton() {

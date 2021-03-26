@@ -27,7 +27,8 @@ class test extends React.Component {
 
   storeUser() { 
     this.usersCollectionRef.add({
-            name: this.state.name
+            name: this.state.name,
+            time: this.state.time
           }).then((res) => {
               this.setState({
                   name: '',
@@ -56,7 +57,7 @@ class test extends React.Component {
             />
 
             <Input
-                placeholder="Exam Timer (Second)"
+                placeholder="Exam Timer (Minute)"
                 leftIcon={{ type: 'font-awesome', name: 'clock-o' }}
                 onChangeText = {(val) => this.inputValueUpdate(val, 'time')}
                 style={styles}

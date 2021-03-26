@@ -1,20 +1,19 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
 import {View, StyleSheet, Text, Alert } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { Input, ListItem, Button } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
 import {StudentChooseButton} from '../components/StudentChooseButton';
+import firestore from '@react-native-firebase/firestore';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
+import { Input, ListItem, Button } from 'react-native-elements';
 
 class exam extends Component {
 
     constructor() {
         super();
 
-        this.fireStoreData = firestore().collection('subject_SoftWare').doc('Name').collection('Name')
+        this.fireStoreData = firestore().collection('subject_Software').doc('Name').collection('Name')
         this.state = {
       userArr: [],
       buttonName: ''
@@ -37,11 +36,12 @@ class exam extends Component {
     getCollection = (querySnapshot) => {
       const userArr = [];
       querySnapshot.forEach((res) => {
-        const {name} = res.data();
+        const {name,time} = res.data();
         userArr.push({
           key: res.id,
           res,
           name,
+          time
         });
       });
       this.setState({
@@ -60,11 +60,13 @@ class exam extends Component {
                   title={item.name}
                   onPress={() => {
                     this.props.navigation.navigate('SoftwareExam', {text: item.name});
+                    this.props.navigation.navigate('SoftwareExam', {timer: item.time});
                   }}
                 />
 
           );
         })}
+            
 
           </View>
         </ScrollView>
@@ -95,7 +97,6 @@ const styles = StyleSheet.create({
       marginBottom: 100
   
     },
-
     bg: {
       backgroundColor: '#E2FCFA'
     }
