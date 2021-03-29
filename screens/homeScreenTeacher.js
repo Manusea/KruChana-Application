@@ -4,7 +4,7 @@ import {View, StyleSheet, Text, Alert, TouchableOpacity} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-
+console.disableYellowBox = true;
 export default function homeScreen({navigation}) {
   const {user, logout} = useContext(AuthContext);
 

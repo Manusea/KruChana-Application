@@ -41,9 +41,25 @@ class ShowData extends Component {
   }
   render(){
     const {text} = this.props.route.params
+    const allScore = [];
     this.fireStoreData = firestore().collection("subject_Code").doc({text}.text).collection('score');
+    {
+      this.state.userArr.map((item, i) => {
+        allScore.push(item.score)
+      })
+    }
+    const maxScore = Math.max.apply(null, allScore);
+    const minScore = Math.min.apply(null, allScore);
+    const allSum = (allScore.reduce((a,v) =>  a = a + v , 0 ))/allScore.length;
+    
+
     return(
       <ScrollView style={styles.container}>
+          <View> 
+          <Text>Average :  {allSum}</Text>
+          <Text>Max Score : {maxScore}</Text>
+          <Text>Min Score : {minScore}</Text>
+          </View>
         {
           this.state.userArr.map((item, i) => {
             return (
