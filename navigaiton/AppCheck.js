@@ -103,6 +103,19 @@ import hwSoftware from '../homeWorkStudent/software';
 
 
 import mainShowAns from '../showAns/main';
+import filePreview from '../showAns/filePreview';
+
+import ansLinkCode from '../showAns/ansLinkCode';
+import ansLinkEng from '../showAns/ansLinkEng';
+import ansLinkMath from '../showAns/ansLinkMath';
+import ansLinkScience from '../showAns/ansLinkScience';
+import ansLinkSoftware from '../showAns/ansLinkSoftware';
+
+import ansCode from '../showAns/code';
+import ansMath from '../showAns/math';
+import ansScience from '../showAns/science';
+import ansSoftware from '../showAns/software';
+import ansEng from '../showAns/eng';
 
 
 const Stack = createStackNavigator();
@@ -221,6 +234,19 @@ export default function checkRoleScreen() {
         <Stack.Screen name="tLinkcode" component={tLinkcode}/>
 
         <Stack.Screen name="mainShowAns" component={mainShowAns}/>
+        <Stack.Screen name="filePreview" component={filePreview}/>
+        <Stack.Screen name="ansLinkCode" component={ansLinkCode}/>
+        <Stack.Screen name="ansLinkEng" component={ansLinkEng}/>
+        <Stack.Screen name="ansLinkMath" component={ansLinkMath}/>
+        <Stack.Screen name="ansLinkScience" component={ansLinkScience}/>
+        <Stack.Screen name="ansLinkSoftware" component={ansLinkSoftware}/>
+
+        <Stack.Screen name="ansCode" component={ansCode}/>
+        <Stack.Screen name="ansEng" component={ansEng}/>
+        <Stack.Screen name="ansMath" component={ansMath}/>
+        <Stack.Screen name="ansScience" component={ansScience}/>
+        <Stack.Screen name="ansSoftware" component={ansSoftware}/>
+
 
 
 

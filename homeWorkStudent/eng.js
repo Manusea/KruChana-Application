@@ -25,6 +25,8 @@ let arrayDictStudents = [];
 
 // Get url for file
 let urlUser = "";
+let fileType = "";
+let fileName = "";
 let nameHw = "";
 class Hw extends React.Component {
     
@@ -100,7 +102,9 @@ class Hw extends React.Component {
     }
 
     async function uploadFileToFirebaseStorage(result, file) {
-      const name = 'allFiles/subject_Eng/'+nameHw+"/"+file.name;
+      const name = 'allFiles/subject_Eng/'+nameHw+ "/"+file.name;
+      console.log(nameHw);
+
       const uploadTask = firebaseStorage()
         .ref(name)
         .putString(result, 'base64', { contentType: file.type });
@@ -110,7 +114,7 @@ class Hw extends React.Component {
           // Observe state change events such as progress, pause, and resume
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
+          //console.log('Upload is ' + progress + '% done');
           alert("Progress Upload  :  " + Math.ceil(progress) + " %")
           switch (snapshot.state) {
             case storage.TaskState.PAUSED: // or 'paused'
@@ -131,6 +135,8 @@ class Hw extends React.Component {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             //console.log('File available at', downloadURL);
             urlUser = downloadURL;
+            fileType = file.type;
+            fileName = file.name;
             alert("Finish")
           });
         }
@@ -162,6 +168,8 @@ class Hw extends React.Component {
               this.usersCollectionRef.add({
                 name: this.context.user.email,
                 url: urlUser,
+                fileName: fileName,
+                fileType: fileType,
                 timestamp: firestore.FieldValue.serverTimestamp()
               }).then((res) => {
                 this.setState({
@@ -196,7 +204,6 @@ class Hw extends React.Component {
     this.usersCollectionRef = firestore().collection("subject_Eng").doc(nameHw).collection("ans");
     //show data
     this.fireStoreData = firestore().collection("subject_Eng").doc(nameHw).collection("homeWorkDetail");
-    console.log(nameHw);
     /////////////////////////////////
 
     ////// loop data in local array /////

@@ -25,6 +25,8 @@ let arrayDictStudents = [];
 
 // Get url for file
 let urlUser = "";
+let fileType = "";
+let fileName = "";
 let nameHw = "";
 class Hw extends React.Component {
     
@@ -133,6 +135,8 @@ class Hw extends React.Component {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             //console.log('File available at', downloadURL);
             urlUser = downloadURL;
+            fileType = file.type;
+            fileName = file.name;
             alert("Finish")
           });
         }
@@ -164,6 +168,8 @@ class Hw extends React.Component {
               this.usersCollectionRef.add({
                 name: this.context.user.email,
                 url: urlUser,
+                fileName: fileName,
+                fileType: fileType,
                 timestamp: firestore.FieldValue.serverTimestamp()
               }).then((res) => {
                 this.setState({

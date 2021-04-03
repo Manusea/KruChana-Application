@@ -66,7 +66,7 @@ class test extends React.Component {
             <TouchableOpacity style={styles.loginButton} onPress={() => {
                   this.props.navigation.navigate('nameHomeWorkMath', {text: this.state.name});
                   this.props.navigation.navigate('nameHomeWorkMath', {timer: this.state.time});
-                
+
                   this.storeUser()}
                 }>
               <Text style={styles.loginButtonText}>

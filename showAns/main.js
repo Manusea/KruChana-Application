@@ -1,36 +1,80 @@
+import * as React from 'react';
+import { useContext, Component} from 'react'
+import {View, StyleSheet, Text, Alert } from 'react-native';
+import {FilledButton} from '../components/FilledButton';
+import { AuthContext } from '../navigaiton/AuthProvider';
+import firestore from '@react-native-firebase/firestore';
+import { Input, ListItem, Button, Image } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import React from 'react';
-import { ScrollView } from 'react-native';
-import { Dimensions } from 'react-native';
-import { View, Image, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: 50,
-    },
-    tinyLogo: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-    },
-    logo: {
-        width: 66,
-        height: 58,
-    },
-});
-
-const DisplayAnImage = () => {
-    return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Image
-                    style={styles.tinyLogo}
-                    source={{
-                        uri: 'https://firebasestorage.googleapis.com/v0/b/lgin-5579f.appspot.com/o/allFiles%2Fsubject_Eng%2Ft2%2Fclement-m-F_-0BxGuVvo-unsplash.jpg?alt=media&token=d758c409-0e39-44df-bfcb-43ee3fdcc69b',
-                    }}
-                />
-            </View>
-        </ScrollView>
-    );
+const editSubject = () => {
+    // subject = this.subject
+    Alert.alert(subject)
 }
 
-export default DisplayAnImage;
+class addSubject extends Component {
+
+    constructor() {
+        super();
+    }
+    render (){
+      return (
+        <ScrollView>
+          <View style={styles.container}>
+            <Image source={require("../img/math.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('ansLinkMath')}
+            />
+            <Image source={require("../img/eng.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('ansLinkEng')}
+            />
+            <Image source={require("../img/sci.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('ansLinkScience')}
+            />
+            <Image source={require("../img/sw.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('ansLinkSoftware')}
+            /> 
+            <Image source={require("..//img/code.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('ansLinkCode')}
+            />
+          </View>
+        </ScrollView>
+      )
+    }
+
+}
+
+
+const styles = StyleSheet.create({
+    title: {
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+    input: {
+      marginVertical: 10,
+      marginBottom: 15,
+    },
+    loginButton: {
+      marginVertical: 32,
+    },
+  
+    container: {
+      flex: 1,
+      backgroundColor: '#E2FCFA', //color wallpaper
+      alignItems: 'center',
+      paddingHorizontal: 20, 
+      paddingTop: 29
+    },
+
+    picture: {
+      width: 300,
+      height: 100,
+      marginVertical: 15
+    }
+  });
+
+  export default addSubject;
