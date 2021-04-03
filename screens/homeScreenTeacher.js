@@ -4,7 +4,7 @@ import {View, StyleSheet, Text, Alert, TouchableOpacity} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-
+console.disableYellowBox = true;
 export default function homeScreen({navigation}) {
   const {user, logout} = useContext(AuthContext);
 
@@ -32,9 +32,15 @@ export default function homeScreen({navigation}) {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Chat Teacher')}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('homeWorkMain')}>
         <Text style={styles.loginButtonText}>
-        Chat
+        Homework Create
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('mainShowAns')}>
+        <Text style={styles.loginButtonText}>
+        Homework Answer
         </Text>
       </TouchableOpacity>
 

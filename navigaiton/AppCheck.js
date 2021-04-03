@@ -73,6 +73,38 @@ import scoreScience from '../showScorePage/science';
 import scoreSoftware from '../showScorePage/software';
 
 
+import homeWorkMain from'../homeWork_teacher/main';
+import nameHomeWorkCode from '../homeWork_teacher/create_homework_code';
+import nameHomeWorkEng from '../homeWork_teacher/create_homework_eng';
+import nameHomeWorkMath from '../homeWork_teacher/create_homework_math';
+import nameHomeWorkScience from '../homeWork_teacher/create_homework_science';
+import nameHomeWorkSoftware from '../homeWork_teacher/create_homework_software';
+
+import tLinkEng from '../homeWork_teacher/tLinkEng';
+import tLinkMath from '../homeWork_teacher/tLinkMath';
+import tLinkScience from '../homeWork_teacher/tLinkScience';
+import tLinkSoftware from '../homeWork_teacher/tLinkSoftware';
+import tLinkcode from '../homeWork_teacher/tLinkcode';
+
+
+import studentHwMain from '../homeWorkStudent/main';
+
+import stuLinkCode from '../homeWorkStudent/linkCode';
+import stuLinkEng from '../homeWorkStudent/linkEng';
+import stuLinkMath from '../homeWorkStudent/linkMath';
+import stuLinkScience from '../homeWorkStudent/linkScience';
+import stuLinkSoftware from '../homeWorkStudent/linkSoftware';
+
+import hwCode from '../homeWorkStudent/code';
+import hwMath from '../homeWorkStudent/math';
+import hwEng from '../homeWorkStudent/eng';
+import hwScience from '../homeWorkStudent/science';
+import hwSoftware from '../homeWorkStudent/software';
+
+
+import mainShowAns from '../showAns/main';
+
+
 const Stack = createStackNavigator();
 var teacher = null;
 const list = [];
@@ -173,6 +205,25 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Software Chat" component={SoftwareChat}/>
         <Stack.Screen name="Code Chat" component={CodeChat}/>
 
+
+        <Stack.Screen name="homeWorkMain" component={homeWorkMain}/>
+        
+        <Stack.Screen name="nameHomeWorkCode" component={nameHomeWorkCode}/>
+        <Stack.Screen name="nameHomeWorkEng" component={nameHomeWorkEng}/>
+        <Stack.Screen name="nameHomeWorkMath" component={nameHomeWorkMath}/>
+        <Stack.Screen name="nameHomeWorkScience" component={nameHomeWorkScience}/>
+        <Stack.Screen name="nameHomeWorkSoftware" component={nameHomeWorkSoftware}/>
+
+        <Stack.Screen name="tLinkEng" component={tLinkEng}/>
+        <Stack.Screen name="tLinkMath" component={tLinkMath}/>
+        <Stack.Screen name="tLinkScience" component={tLinkScience}/>
+        <Stack.Screen name="tLinkSoftware" component={tLinkSoftware}/>
+        <Stack.Screen name="tLinkcode" component={tLinkcode}/>
+
+        <Stack.Screen name="mainShowAns" component={mainShowAns}/>
+
+
+
       </Stack.Navigator>
     </>
   ) : (
@@ -200,6 +251,23 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Chat Science" component={ChatScience}/>
         <Stack.Screen name="Chat Software" component={ChatSoftware}/>
         <Stack.Screen name="Chat Code" component={ChatCode}/>
+
+
+
+
+        <Stack.Screen name="studentHwMain" component={studentHwMain}/>
+
+        <Stack.Screen name="stuLinkMath" component={stuLinkMath}/>
+        <Stack.Screen name="stuLinkEng" component={stuLinkEng}/>
+        <Stack.Screen name="stuLinkScience" component={stuLinkScience}/>
+        <Stack.Screen name="stuLinkSoftware" component={stuLinkSoftware}/>
+        <Stack.Screen name="stuLinkCode" component={stuLinkCode}/>
+
+        <Stack.Screen name="hwCode" component={hwCode}/>
+        <Stack.Screen name="hwEng" component={hwEng}/>
+        <Stack.Screen name="hwMath" component={hwMath}/>
+        <Stack.Screen name="hwScience" component={hwScience}/>
+        <Stack.Screen name="hwSoftware" component={hwSoftware}/>
 
       </Stack.Navigator>
     </>

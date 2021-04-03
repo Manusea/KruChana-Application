@@ -98,7 +98,6 @@ class StudentTakeTest extends React.Component {
     this.state = {
       students: arrayDictStudents,
       userArr: [],
-
     }
     this.onPressButton = this.onPressButton.bind(this);
   }
@@ -182,9 +181,7 @@ class StudentTakeTest extends React.Component {
           choice4: item.choice4,
           question: item.question,
           timer: item.timer
-        }
-        )
-
+        })
       })
 
 
@@ -225,10 +222,8 @@ class StudentTakeTest extends React.Component {
             {this.state.students.map(eachStudent => (
               <>
                 <Text style={styles.text_head}>
-          
                   {eachStudent.question}
                 </Text>
-
                 <RadioGroup
                   size={40}
                   thickness={4}
@@ -236,7 +231,6 @@ class StudentTakeTest extends React.Component {
                   highlightColor='#97FFDA'
                   onSelect={(index, value) => this.onSelect(index, value, eachStudent)}
                 >
-
                   <RadioButton value={eachStudent.choice1}>
                     <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
                   </RadioButton>
@@ -250,13 +244,10 @@ class StudentTakeTest extends React.Component {
                     <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
                   </RadioButton>
                 </RadioGroup>
-
                 <Text>
                   {"\n"}
                 </Text>
-
               </>
-
             ))}
 
             <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
