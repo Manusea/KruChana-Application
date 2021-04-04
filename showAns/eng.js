@@ -52,16 +52,20 @@ class ShowData extends Component {
                 {
                     this.state.userArr.map((item, i) => {
                         return (
+                            <View>
+
+                            <Text>{item.name}</Text>
                             <TouchableOpacity style={styles.loginButton} onPress={() => {
                                 this.props.navigation.navigate('filePreview', { fileName: item.fileName });
                                 this.props.navigation.navigate('filePreview', { fileType: item.fileType });
                                 this.props.navigation.navigate('filePreview', { url: item.url });
                             }
-                            }>
+                        }>
                                 <Text style={styles.loginButtonText}>
                                     {item.fileName}
                                 </Text>
                             </TouchableOpacity>
+                                </View>
                         );
                     })
                 }

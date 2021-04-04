@@ -55,13 +55,6 @@ class test extends React.Component {
                 onChangeText = {(val) => this.inputValueUpdate(val, 'name')}
                 style={styles}
             />
-
-            <Input
-                placeholder="Exam Timer (Minute)"
-                leftIcon={{ type: 'font-awesome', name: 'clock-o' }}
-                onChangeText = {(val) => this.inputValueUpdate(val, 'time')}
-                style={styles}
-            />
           
             <TouchableOpacity style={styles.loginButton} onPress={() => {
                   this.props.navigation.navigate('nameHomeWorkSoftware', {text: this.state.name});

@@ -56,12 +56,6 @@ class test extends React.Component {
                 style={styles}
             />
 
-            <Input
-                placeholder="Exam Timer (Minute)"
-                leftIcon={{ type: 'font-awesome', name: 'clock-o' }}
-                onChangeText = {(val) => this.inputValueUpdate(val, 'time')}
-                style={styles}
-            />
           
             <TouchableOpacity style={styles.loginButton} onPress={() => {
                   this.props.navigation.navigate('nameHomeWorkEng', {text: this.state.name});
